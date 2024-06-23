@@ -38,14 +38,17 @@ inquirer
     ])
     .then((response) => {
         if(response.image === 'circle'){
-            let radius=40;
+            let radius=60;
             text=response.text;
             textColor=response.textColor;
             image=response.image;
             imageColor=response.imageColor;
             const circle=new Circle(radius,text,textColor,image,imageColor);
-            svgLogoContent = circle.render();
-            writeToFile('./examples/circle-logo.svg',svgLogoContent);
+            svgLogoContent=`<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+            ${circle.render()}
+            ${circle.renderText()}
+            </svg>`
+            writeToFile('./examples/logo.svg',svgLogoContent);
         }
         else if(response.image === 'triangle'){
             text=response.text;
@@ -53,8 +56,11 @@ inquirer
             image=response.image;
             imageColor=response.imageColor;
             const triangle=new Triangle(text,textColor,image,imageColor)
-            svgLogoContent=triangle.render();
-            writeToFile('./examples/triangle-logo.svg',svgLogoContent);
+            svgLogoContent=`<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+            ${triangle.render()}
+            ${triangle.renderText()}
+            </svg>`
+            writeToFile('./examples/logo.svg',svgLogoContent);
         }
         else if(response.image==='square'){
             text=response.text;
@@ -62,8 +68,11 @@ inquirer
             image=response.image;
             imageColor=response.imageColor;
             const square=new Square(text,textColor,image,imageColor)
-            svgLogoContent=square.render();
-            writeToFile('./examples/square-logo.svg',svgLogoContent);
+            svgLogoContent=`<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+            ${square.render()}
+            ${square.renderText()}
+            </svg>`
+            writeToFile('./examples/logo.svg',svgLogoContent);
         }
         else{
             console.log('Please select valid image for logo generation')
@@ -73,5 +82,5 @@ inquirer
     // function to generate file
     function writeToFile(fileName,data){
         fs.writeFile(fileName,data,(err)=>
-        err ? console.error(err):console.log(`${fileName} generated successfully`))
+        err ? console.error(err):console.log(`Generated logo.svg`))
     }
