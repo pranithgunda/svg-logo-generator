@@ -1,7 +1,10 @@
 // Import the required packages/modules
-const inquirer = require('inquirer')
-const fs = require('fs')
-const images = ['circle', 'triangle', 'square']
+const inquirer=require('inquirer')
+// package to extend the built-in prompt type to allow a max input length
+const MaxLengthInputPrompt=require('inquirer-maxlength-input-prompt')
+inquirer.registerPrompt('maxlength-input',MaxLengthInputPrompt)
+const fs=require('fs')
+const images=['circle', 'triangle', 'square']
 const {Circle,Square,Triangle} = require('./lib/shapes')
 
 // Define variables at Global level
@@ -14,9 +17,10 @@ let svgLogoContent = "";
 inquirer
     .prompt([
         {
-            type: "input",
+            type: "maxlength-input",
+            name: "text",
             message: "Please enter text for logo",
-            name: "text"
+            maxLength:3        
         },
         {
             type:"input",
