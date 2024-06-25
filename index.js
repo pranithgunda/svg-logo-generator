@@ -4,7 +4,9 @@ const inquirer=require('inquirer')
 const MaxLengthInputPrompt=require('inquirer-maxlength-input-prompt')
 inquirer.registerPrompt('maxlength-input',MaxLengthInputPrompt)
 const fs=require('fs')
+// Array to select image for logo generation
 const images=['circle', 'triangle', 'square']
+// Destructure the required modules for import
 const {Circle,Square,Triangle} = require('./lib/shapes')
 
 // Define variables at Global level
@@ -14,6 +16,7 @@ let image = "";
 let imageColor = "";
 let svgLogoContent = "";
 
+// Prompt user with questions related to logo generation
 inquirer
     .prompt([
         {
